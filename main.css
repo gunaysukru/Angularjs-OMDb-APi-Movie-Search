@@ -1,0 +1,31 @@
+body {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/bg-sky.png);
+    background-repeat: repeat !important;
+    background-attachment: fixed;
+}
+.outerdiv{
+    margin-top: 70px;
+}
+.searchBar{
+    width: 100%;
+    max-width: 500px;
+}
+.searcIcon{
+    background: #337AB7;
+}
+.movieArea{
+    margin-top: 20px
+}
+.movieImg{
+    padding: 0 10px 20px 0;
+    float: left;
+}
+.label{
+    font-size: large; !important;
+}
+li{
+    list-style: none
+}
+.btn-sm{
+
+}

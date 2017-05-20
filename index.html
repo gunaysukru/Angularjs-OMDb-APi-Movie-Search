@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" ng-app="movieApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script> 
+    <script src="app.js"></script>
+    <title>Angularjs Movie browser</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><span class="span-style">Movies search from OMDb API</span></a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid outerdiv" ng-controller="MovieController">
+    <div class="col-sm-9">
+        <div class="input-group searchBar">
+            <input type="text" ng-model="movieName" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched"   placeholder="Enter movie name">
+            <span class="input-group-addon searcIcon"><i class="fa fa-search"></i></span>
+        </div>
+        <div class="row movieArea">
+            <div class="col-sm-4 thumbnail">
+                <img src="{{ movie.Poster }}" alt="Movie name" style="width: 100%; height: 450px;">
+            </div>
+            <div class="col-sm-8">
+                <span><a href="http://www.imdb.com/title/{{movie.imdbID}}" target="_blank"><b>{{movie.Title}}</b></a>, {{movie.Year}} </span>
+                <p><strong>Released on:</strong> {{movie.Released}} ({{movie.Runtime}})</p>
+                {{count}}
+                <p> {{movie.Plot}} </p>
+
+                <span class="label label-primary">Director:</span> <span>{{movie.Director}}</span><br>
+                <span class="label label-primary">Production:</span> <span>{{movie.Production}}</span> <br>
+                <span class="label label-primary">Genre:</span> <span>{{movie.Genre}}</span> <br>
+                <span class="label label-primary">Actors:</span> <span>{{movie.Actors}}</span><br>
+                <span class="label label-primary">Country:</span> <span>{{movie.Country}}</span><br>
+                <span class="label label-primary">Awards:</span> <span>{{movie.Awards}}</span><br>
+                <span class="label label-primary">Type:</span> <span>{{movie.Type}}</span><br>
+                <span class="label label-primary">Box Office:</span> <span>{{movie.BoxOffice}}</span><br>
+                <span class="label label-primary">Ratings:</span>
+                <ul>
+                    <li ng-repeat="item in movie.Ratings">{{item.Source}} - <span class="label label-success">{{item.Value}}</span> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4 btn-group" style="margin-top: -10px">
+            <a ng-href="https://www.youtube.com/results?search_query={{ movie.Title }}" target="_blank" class="btn btn-default btn-sm btn-info">Watch Trailers!</a>
+            <a ng-href="http://www.yifysubtitles.com/search?q={{ movie.Title }}" target="_blank" class="btn btn-default btn-sm btn-info">Get Subtitles!</a>
+            <a ng-href="http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Ddvd&field-keywords= {{ movie.Title }}" target="_blank" class="btn btn-default btn-sm btn-info">Buy movie!</a>
+            <a ng-href="http://www.imdb.com/title/{{movie.imdbID}}" target="_blank" class="btn btn-default btn-sm btn-info">Visit iMDB</a>
+            <a ng-href="{{ movie.tomatoURL }}" target="_blank" class="btn btn-default btn-sm btn-info">Visit Tomato</a>
+            <a ng-href="{{ movie.Website }}" target="_blank" class="btn btn-default btn-sm btn-info">&nbsp;Visit Movie Site&nbsp;&nbsp;</a>
+        </div>
+
+    </div>
+    <div class="col-sm-3">
+
+    <strong>Related Results:</strong>
+        <br>
+        <hr>
+    <ul>
+        <li ng-repeat="item in related['Search']"><a ng-href="http://www.imdb.com/title/{{item.imdbID}}" target="_blank"><strong>{{item.Title}}</strong></a>, {{item.Year}}</li>
+    </ul>
+
+    </div>
+</div>
+</body>
+</html>
